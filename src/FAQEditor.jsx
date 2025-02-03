@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Save, ArrowLeft } from 'lucide-react';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 const FAQEditor = () => {
   const [faqData, setFaqData] = useState({

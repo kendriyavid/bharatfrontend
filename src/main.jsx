@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App.jsx';
 import FAQApp from './FAQApp.jsx';
 import AdminFAQBoard from './AdminFAQBoard.jsx';
-import Navbar from './navbar.jsx';
+import Navbar from './Navbar.jsx';
 import LoginPage from './Loginpage.jsx';
 
 createRoot(document.getElementById('root')).render(

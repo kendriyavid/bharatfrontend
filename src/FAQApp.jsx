@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Globe } from "lucide-react";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 
 const FAQApp = () => {
   const [language, setLanguage] = useState("");
