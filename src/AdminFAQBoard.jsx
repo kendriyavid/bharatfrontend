@@ -4,7 +4,6 @@ import { Editor } from "@tinymce/tinymce-react";
 import { X, Edit, Trash2, Loader2 } from "lucide-react";
 import Navbar from "./Navbar";
 
-const API_BASE_URL = "http://localhost:3000";
 
 const AdminFAQBoard = () => {
   const [faqs, setFaqs] = useState([]);
@@ -20,7 +19,7 @@ const AdminFAQBoard = () => {
   const fetchFAQs = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/faqs/fetchall`);
+      const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/faqs/fetchall`);
       const data = await response.json();
 
       if (response.ok) {
@@ -52,7 +51,7 @@ const AdminFAQBoard = () => {
     try {
       if (editingFaq) {
         const response = await fetch(
-          `${API_BASE_URL}/api/admin/updatefaq/${editingFaq.id}`,
+          `${import.meta.env.VITE_BASE_IP}/api/admin/updatefaq/${editingFaq.id}`,
           {
             method: "PATCH",
             headers: {
@@ -76,7 +75,7 @@ const AdminFAQBoard = () => {
           setError(data.message || "Failed to update FAQ");
         }
       } else {
-        const response = await fetch(`${API_BASE_URL}/api/admin/createfaq`, {
+        const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/admin/createfaq`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +115,7 @@ const AdminFAQBoard = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/deletefaq/${faqId}`,
+        `${import.meta.env.VITE_BASE_IP}/api/admin/deletefaq/${faqId}`,
         {
           method: "DELETE",
           headers: {

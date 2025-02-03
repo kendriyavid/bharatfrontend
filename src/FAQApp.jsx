@@ -16,7 +16,7 @@ const FAQApp = () => {
   const fetchFAQs = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/faqs/fetchall?lang=${language !== "en" ? language : ""}`);
+      const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/faqs/fetchall?lang=${language !== "en" ? language : ""}`);
       if (!response.ok) throw new Error("Failed to fetch FAQs");
       const data = await response.json();
       setFaqs(data);
@@ -30,7 +30,7 @@ const FAQApp = () => {
 
   const fetchSpecificFAQ = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/faqs/${id}?lang=${language !== "en" ? language : ""}`);
+      const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/faqs/${id}?lang=${language !== "en" ? language : ""}`);
       if (!response.ok) throw new Error("Failed to fetch FAQ");
       const data = await response.json();
       setSelectedFaq(data);

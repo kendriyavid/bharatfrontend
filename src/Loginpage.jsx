@@ -13,7 +13,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       // API call to login
-      const response = await fetch('http://localhost:3000/adminlogin', {
+      const response = await fetch('${import.meta.env.VITE_BASE_IP}/adminlogin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
