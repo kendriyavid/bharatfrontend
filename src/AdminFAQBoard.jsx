@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { X, Edit, Trash2, Loader2 } from "lucide-react";
 import Navbar from "./Navbar";
+import {useFetchWithAuth} from "./fetchWrapper"
 
 
 const AdminFAQBoard = () => {
@@ -15,11 +16,12 @@ const AdminFAQBoard = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const getAdminToken = () => localStorage.getItem("adminToken");
+  const fetchWithAuth = useFetchWithAuth();
 
   const fetchFAQs = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/faqs/fetchall`);
+      const response = await fetchWithAuth(`${import.meta.env.VITE_BASE_IP}/api/faqs/fetchall`);
       const data = await response.json();
 
       if (response.ok) {
@@ -50,8 +52,8 @@ const AdminFAQBoard = () => {
 
     try {
       if (editingFaq) {
-        const response = await fetch(
-          `${import.meta.env.VITE_BASE_IP}/api/admin/updatefaq/${editingFaq.id}`,
+        const response = await fetchWithAuth(
+          `${import.meta.env.VITE_BASE_IP}/api/admin/faq/${editingFaq.id}`,
           {
             method: "PATCH",
             headers: {
@@ -75,7 +77,7 @@ const AdminFAQBoard = () => {
           setError(data.message || "Failed to update FAQ");
         }
       } else {
-        const response = await fetch(`${import.meta.env.VITE_BASE_IP}/api/admin/createfaq`, {
+        const response = await fetchWithAuth(`${import.meta.env.VITE_BASE_IP}/api/admin/faq`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -114,8 +116,8 @@ const AdminFAQBoard = () => {
     const adminToken = getAdminToken();
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BASE_IP}/api/admin/deletefaq/${faqId}`,
+      const response = await fetchWithAuth(
+        `${import.meta.env.VITE_BASE_IP}/api/admin/faq/${faqId}`,
         {
           method: "DELETE",
           headers: {
