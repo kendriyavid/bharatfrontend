@@ -23,7 +23,7 @@ export const useFetchWithAuth = () => {
 
       if (response.status === 401) {
         localStorage.removeItem('adminToken');
-        navigate('/adminlogin', { replace: true });
+        navigate('/login', { replace: true });
         alert('Session expired. Please log in again.');
         return Promise.reject('Unauthorized access');
       }
